@@ -1,15 +1,10 @@
-import './App.css'
-import useApi from './services/api';
+import { useNews } from './services/api';
 
 function App() {
 
-  const { getResponse, isGetLoading, getError, get } = useApi();
+  const { data } = useNews();
 
-  const handleGetData = () => {
-    get();
-  };
-
-  handleGetData()
+  console.log(data)
 
   return (
     <>

@@ -1,9 +1,7 @@
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-// Definindo a interface para os dados da resposta
-interface ResponseData {
+export interface Root {
   status: string
   totalResults: number
   articles: Article[]
@@ -26,39 +24,8 @@ export interface Source {
 }
 
 
-const useApi = () => {
-  const [url, setUrl] = useState('');
-
-  const { data: getResponse, isLoading: isGetLoading, error: getError } = useQuery<ResponseData>(
-    ['getData'],
-    () => axios.get(url).then((response) => response.data),
-    {
-      enabled: false,
-      retry: 1,
-      retryDelay: 1000,
-      onError: (error) => {
-        console.error('Erro na requisição GET:', error);
-      },
-      onSuccess: () => {
-        console.log('Requisição GET bem-sucedida!');
-      },
-      onSettled: () => {
-        console.log('Requisição GET finalizada!');
-      },
-    }
-  );
-
-  // Função para realizar uma requisição GET
-  const get = () => {
-    setUrl(`https://newsapi.org/v2/top-headlines?apiKey=${process.env.API_KEY}&country=br&category=technology`);
-  };
-
-  return {
-    getResponse,
-    isGetLoading,
-    getError,
-    get,
-  };
+export const useNews = () => {
+  return useQuery(["news"], async () => {
+    return axios.get<Root>("https://newsapi.org/v2/top-headlines?country=br&category=technology&apiKey=7be58569255242d4871ac1375f33027a").then((d: { data: unknown; }) => d.data);
+  });
 };
-
-export default useApi;
