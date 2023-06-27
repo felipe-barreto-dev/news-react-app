@@ -26,6 +26,6 @@ export interface Source {
 
 export const useNews = () => {
   return useQuery(["news"], async () => {
-    return axios.get<Root>("https://newsapi.org/v2/top-headlines?country=br&category=technology&apiKey=7be58569255242d4871ac1375f33027a").then((d: { data: unknown; }) => d.data);
+    return axios.get<Root>("https://newsapi.org/v2/top-headlines?country=br&category=technology&apiKey=7be58569255242d4871ac1375f33027a").then((d: { data: Root; }) => d.data);
   });
 };
