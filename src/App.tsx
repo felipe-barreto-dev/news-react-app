@@ -1,3 +1,4 @@
+import ArticleListItem from './components/ArticleListItem/ArticleListItem';
 import { useNews } from './services/api';
 
 function App() {
@@ -8,6 +9,9 @@ function App() {
 
   return (
     <>
+      {data?.articles.map((article, key) => {
+        return <ArticleListItem key={key} />
+      })}
     </>
   )
 }
