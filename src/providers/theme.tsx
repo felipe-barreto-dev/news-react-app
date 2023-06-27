@@ -5,30 +5,30 @@ type Theme = 'light' | 'dark';
 
 type lightThemeColorsType = {
   primary: '#4287f5',
-  secondary: '#888888',
-  background: '#ffffff',
-  text: '#000000',
+  secondary: '#E6E6E6',
+  background: '#FAFAFA',
+  text: '#292929',
 };
 
 type darkThemeColorsType = {
   primary: '#f5427b',
-  secondary: '#bbbbbb',
+  secondary: '#E6E6E6',
   background: '#222222',
-  text: '#ffffff',
+  text: '#FAFAFA',
 };
 
 const lightThemeColors: lightThemeColorsType = {
   primary: '#4287f5',
-  secondary: '#888888',
-  background: '#ffffff',
-  text: '#000000',
+  secondary: '#E6E6E6',
+  background: '#FAFAFA',
+  text: '#292929',
 };
 
 const darkThemeColors: darkThemeColorsType = {
   primary: '#f5427b',
-  secondary: '#bbbbbb',
+  secondary: '#E6E6E6',
   background: '#222222',
-  text: '#ffffff',
+  text: '#FAFAFA',
 };
 
 
@@ -45,6 +45,7 @@ interface ThemeContextType {
 // Crie o contexto do tema com um valor inicial
 export const ThemeContext = createContext<ThemeContextType>({
   theme: 'light',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   toggleTheme: () => { },
   themes: {
     light: lightThemeColors,
